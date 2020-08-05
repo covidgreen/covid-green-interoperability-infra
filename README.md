@@ -41,8 +41,9 @@ Using the same AWS account on prod as cti-prod at this time, need to increase th
 
 ### Contributors
 
-* TBD
-* TBD
+* @dennisgove - Dennis Gove <dgove1@bloomberg.net>
+* @dharding - David J Harding <davidjasonharding@gmail.com>
+* @fiacc - Fiac O'Brien Moran <fiacc.obrienmoran@nearform.com>
 
 ### Past Contributors
 
