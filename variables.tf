@@ -5,17 +5,26 @@ variable "namespace" {}
 variable "full_name" {}
 variable "environment" {}
 variable "profile" {}
-variable "root_profile" {}
+variable "dns_profile" {}
 variable "aws_region" {}
 
 # #########################################
-# DNS and certificates (Imported/existing certs)
+# Admins role
 # #########################################
-variable "enable_dns" {
+variable "admins_role_require_mfa" {
+  # Turning this on is fine with the AWS CLI but is tricky with TF and we have multiple accounts in play in some envs
+  description = "Require MFA for assuming the admins IAM role"
+  default     = false
+}
+
+# #########################################
+# DNS and certificates
+# #########################################
+variable "enable_certificates" {
   default = true
 }
-variable "interop_us_certificate_arn" {
-  default = ""
+variable "enable_dns" {
+  default = true
 }
 
 # #########################################
@@ -105,8 +114,11 @@ variable "default_ecr_max_image_count" {
 # #########################################
 # R53 Settings
 # #########################################
-variable "route53_zone" {}
 variable "interop_dns" {}
+variable "route53_zone" {}
+variable "wildcard_domain" {
+  description = "DNS wildcard domain"
+}
 
 # #########################################
 # Bastion

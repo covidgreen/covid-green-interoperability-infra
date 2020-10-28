@@ -12,3 +12,15 @@ data "aws_secretsmanager_secret_version" "jwt" {
 data "aws_secretsmanager_secret_version" "rds" {
   secret_id = "${local.config_var_prefix}rds"
 }
+
+data "aws_secretsmanager_secret_version" "rds_read_only" {
+  secret_id = "${local.config_var_prefix}rds-read-only"
+}
+
+data "aws_secretsmanager_secret_version" "rds_read_write" {
+  secret_id = "${local.config_var_prefix}rds-read-write"
+}
+
+data "aws_secretsmanager_secret_version" "rds_read_write_create" {
+  secret_id = "${local.config_var_prefix}rds-read-write-create"
+}

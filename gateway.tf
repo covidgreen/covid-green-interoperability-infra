@@ -13,9 +13,15 @@ resource "aws_api_gateway_rest_api" "main" {
 ## custom domain name
 resource "aws_api_gateway_domain_name" "main" {
   count           = local.enable_dns_count
-  certificate_arn = var.interop_us_certificate_arn
+  certificate_arn = aws_acm_certificate.wildcard_cert_us[0].arn
   domain_name     = var.interop_dns
   security_policy = "TLS_1_2"
+
+
+  depends_on = [
+    aws_acm_certificate.wildcard_cert_us[0],
+    aws_acm_certificate_validation.wildcard_cert_us[0]
+  ]
 }
 
 ## execution role with s3 access

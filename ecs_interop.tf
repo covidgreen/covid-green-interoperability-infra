@@ -43,6 +43,7 @@ data "aws_iam_policy_document" "interop_ecs_task_policy" {
       aws_ssm_parameter.batch_size.arn,
       aws_ssm_parameter.batch_url.arn,
       data.aws_secretsmanager_secret_version.rds.arn,
+      data.aws_secretsmanager_secret_version.rds_read_write_create.arn,
       data.aws_secretsmanager_secret_version.jwt.arn
     ]
   }
