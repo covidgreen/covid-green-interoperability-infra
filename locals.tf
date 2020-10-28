@@ -9,6 +9,9 @@ locals {
   config_var_prefix = "${module.labels.id}-"
 
   # Based on flag
+  enable_certificates_count = var.enable_certificates ? 1 : 0
+
+  # Based on flag
   enable_dns_count = var.enable_dns ? 1 : 0
 
   # RDS enhanced monitoring count

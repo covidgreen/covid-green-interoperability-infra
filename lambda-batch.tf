@@ -12,11 +12,32 @@ data "aws_iam_policy_document" "batch_policy" {
       "ec2:DescribeNetworkInterfaces",
       "ec2:DetachNetworkInterface",
       "ec2:DeleteNetworkInterface",
-      "secretsmanager:GetSecretValue",
-      "ssm:GetParameter",
       "sqs:*"
     ]
     resources = ["*"]
+  }
+
+  statement {
+    actions = [
+      "secretsmanager:GetSecretValue"
+    ]
+    resources = [
+      data.aws_secretsmanager_secret_version.rds_read_write.arn,
+      data.aws_secretsmanager_secret_version.rds.arn,
+    ]
+  }
+
+  statement {
+    actions = [
+      "ssm:GetParameter"
+    ]
+    resources = [
+      aws_ssm_parameter.db_host.arn,
+      aws_ssm_parameter.db_port.arn,
+      aws_ssm_parameter.db_database.arn,
+      aws_ssm_parameter.db_ssl.arn,
+      aws_ssm_parameter.batch_size.arn
+    ]
   }
 }
 
